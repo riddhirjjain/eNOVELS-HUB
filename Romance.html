@@ -1,0 +1,481 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+/* This pen */
+body {
+  font-family: "Baloo 2", cursive;
+  font-size: 20px;
+  color: #000;
+  font-weight: initial;
+}
+.light {
+  background: #f3f5f7;
+}
+a:hover {
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+#pageHeaderTitle {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+}
+
+/* Cards */
+.postcard {
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  border-radius: 10px;
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+  position: relative;
+  color: #000;
+}
+.postcard.light {
+  background-color: #e1e5ea;
+}
+.postcard a {
+  color: inherit;
+}
+.postcard .small {
+  font-size: 80%;
+  margin-top: -2rem;
+}
+.postcard .postcard__title {
+  font-size: 1.75rem;
+}
+.postcard .postcard__img {
+  max-height: 180px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.postcard .postcard__bar {
+  width: 20px;
+  height: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: width 0.2s ease;
+}
+.postcard .postcard__text {
+  padding: -2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.postcard .postcard__preview-txt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+  height: 100%;
+  font-size: 18px;
+
+}
+.postcard .postcard__tagbox {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+  padding: 0;
+  justify-content: center;
+}
+.postcard .postcard__tagbox .tag__item {
+  display: inline-block;
+  background: rgba(83, 83, 83, 0.4);
+  border-radius: 3px;
+  padding: 2.5px 10px;
+  margin: 0 5px 5px 0;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.postcard .postcard__tagbox .tag__item:hover {
+  background: rgba(83, 83, 83, 0.8);
+}
+.postcard:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(-70deg, #424242, transparent 50%);
+  opacity: 1;
+  border-radius: 10px;
+}
+.postcard:hover .postcard__bar {
+  width: 100px;
+}
+
+@media screen and (min-width: 769px) {
+  .postcard {
+    flex-wrap: inherit;
+  }
+  .postcard .postcard__title {
+    font-size: 2rem;
+  }
+  .postcard .postcard__tagbox {
+    justify-content: start;
+  }
+  .postcard .postcard__img {
+    max-width: 230px;
+    max-height: 100%;
+    transition: transform 0.3s ease;
+  }
+  .postcard .postcard__text {
+    padding: 3rem;
+    width: 100%;
+  }
+  .postcard .media.postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    background: #18151f;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard:hover .postcard__img {
+    transform: scale(1.1);
+  }
+  .postcard:nth-child(2n+1) {
+    flex-direction: row;
+  }
+  .postcard:nth-child(2n+0) {
+    flex-direction: row-reverse;
+  }
+  .postcard:nth-child(2n+1) .postcard__text::before {
+    left: -12px !important;
+    transform: rotate(4deg);
+  }
+  .postcard:nth-child(2n+0) .postcard__text::before {
+    right: -12px !important;
+    transform: rotate(-4deg);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .postcard__text {
+    padding: 2rem 3.5rem;
+  }
+
+  .postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard.light .postcard__text:before {
+    background: #e1e5ea;
+  }
+}
+/* COLORS */
+.postcard .postcard__tagbox .green.play:hover {
+  background: #79dd09;
+  color: black;
+}
+.green .postcard__title:hover {
+  color: #79dd09;
+}
+.green .postcard__bar {
+  background-color: #79dd09;
+}
+.green::before {
+  background-image: linear-gradient(-30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+.green:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .blue.play:hover {
+  background: #0076bd;
+}
+.blue .postcard__title:hover {
+  color: #0076bd;
+}
+.blue .postcard__bar {
+  background-color: #0076bd;
+}
+.blue::before {
+  background-image: linear-gradient(-30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+.blue:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .red.play:hover {
+  background: #bd150b;
+}
+.red .postcard__title:hover {
+  color: #bd150b;
+}
+.red .postcard__bar {
+  background-color: #bd150b;
+}
+.red::before {
+  background-image: linear-gradient(-30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+.red:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .yellow.play:hover {
+  background: #bdbb49;
+  color: black;
+}
+.yellow .postcard__title:hover {
+  color: #bdbb49;
+}
+.yellow .postcard__bar {
+  background-color: #bdbb49;
+}
+.yellow::before {
+  background-image: linear-gradient(-30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+.yellow:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+
+@media screen and (min-width: 769px) {
+  .green::before {
+    background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .green:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .blue::before {
+    background-image: linear-gradient(-80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .blue:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .red::before {
+    background-image: linear-gradient(-80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .red:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .yellow::before {
+    background-image: linear-gradient(-80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+  .yellow:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+}
+</style>
+
+<body>
+<section class="light">
+	<div class="container py-2">
+		<div class="text-center" id="pageHeaderTitle">Romance</div>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://th.bing.com/th/id/OIP.AomQ64juaJO5gXGzBFVq5AAAAA?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">It Ends With Us</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Colleen Hoover</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">It Ends With Us is a 2016 romance novel by Colleen Hoover. The novel tells the story of Lily Bloom and her doomed romance with Ryle Kincaid and traces her past history growing up in an abusive home, her fall into an abusive relationship, and her escape from that relationship.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1W0-Xe8dDP7whDs3QYC6oVEY0pmJBw60I/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.a3LFIiBJsY7FHpF31Co0sgAAAA?pid=ImgDet&rs=1" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">Love on the Brain</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>ALI HAZELWOOD</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Love on the Brain (2022) is a romance novel by Italian author Ali Hazelwood and follows the story of a neuroscientist, Dr. Bee Königswasser, who embarks on a career-high assignment of co-leading a project at NASA but has to contend with working alongside her old grad school nemesis, Levi Ward.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1vt0nKzga5vXwwb4Ahil161GUgIfmDTAD/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.rk5-PJ_Q-o0ea59pOGiAhQHaLk?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">November 9</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Colleen Hoover</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Fallon meets Ben, an aspiring novelist, the day before her scheduled cross-country move. Their untimely attraction leads them to spend Fallon’s last day in L.A. together, and her eventful life becomes the creative inspiration Ben has always sought for his novel. Over time and amidst the various relationships and tribulations of their own separate lives, they continue to meet on the same date every year. Until one day Fallon becomes unsure if Ben has been telling her the truth or fabricating a perfect reality for the sake of the ultimate plot twist.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1VMx2agwySS6jUmjpN6SK28AQfidbyPrq/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.wcZjPkH4FZD5QYi_2kfxxAHaLS?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">Pride and Prejudice</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Jane Austen</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Pride and Prejudice is a romantic novel of manners written by Jane Austen. Though it is mostly called a romantic novel, it can also be considered a satirical book. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1o-bcbKcn3LSS51iXxMa7YtKEfmS8EPRF/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://th.bing.com/th/id/OIP.-ZvE2c6OJFlFA1oaBo3d-wHaLH?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">Reminders of Him</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Colleen Hoover</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Kenna Rowan, age 26, returns to her hometown near Denver after being in prison for five years. She is determined to have a relationship with her four-year-old daughter, Diem Landry. The story offers elements of the romance genre: the hesitant movement toward new love by those wounded by previous relationships, and the affirmation of hope as characters find their way to new beginnings through friends and family. However, Kenna is hardly a typical romance heroine. She was in prison for a drunk driving accident that killed the only man she ever loved—Scotty Landry, the father of Diem.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1ZX5AVYY-zkDnRSDntKbBG7qagbjXkL8Q/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://www.obooko.com/images-cache/samanthas-proposal-ruth-daniel-obooko-romance-ce19163c6e38b527ebfc3580d28184ac.jpg" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">Samantha’s Proposal</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Ruth Daniel</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Samantha Barigha’s mother made it a lifelong goal get her married off. Having been born into a polygamous family and the first daughter in the long list of 32children, she did not know that there was more than one person who wanted her married off and who set the stage for the entire game she knew nothing about. Mark Grinder stirred clear of the rich and powerful for a reason. But he needed a job, and the deal was much better than his current employment. An agreement has been reached. He needed to marry her before she was pawned off on some other unsuspecting man. She's hiding the truth about her father. He's hiding the deal made with her father. Would they find love for all the right reasons they fail to consider?</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1b4pscPvv4T7hzoUeGinC6G_bCBCt1YCs/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.V4CRxaa0U765diXemdmkTwHaLY?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">SENSE AND SENSIBILITY</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Jane Austen</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">When Mr. Henry Dashwood dies, leaving all his money to his first wife's son John Dashwood, his second wife and her three daughters are left with no permanent home and very little income. Mrs. Dashwood and her daughters (Elinor, Marianne, and Margaret) are invited to stay with their distant relations, the Middletons, at Barton Park. Elinor is sad to leave their home at Norland because she has become closely attached to Edward Ferrars, the brother-in-law of her half-brother John.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1oOAcpaTweVtShN_XK61wlNMcpKoFccTB/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://cdn2.penguin.com.au/covers/original/9780451530882.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">The	Age	of Innocence</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Edith Wharton</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">New York lawyer Newland Archer seeks to leave behind his decadent past of European travel and affairs with married women to seek a more morally upright existence by marrying the young May Welland. At the same time, May’s cousin Countess Ellen Olenska leaves her abusive husband in Europe to start a new life in New York. Ellen takes her own house and becomes a favorite with society gentlemen, who are enraptured by her charm.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1ydpXPeWqqQN2eHNe7cxYTMl0bKKMmsdL/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://img1.od-cdn.com/ImageType-400/1191-1/DB9/176/72/%7BDB917672-7F7B-4722-86D0-22D9670C81DA%7DImg400.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">The Love Hypothesis</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Ali Hazelwood</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">The Love Hypothesis is set in modern-day America and follows Olive Smith, a 26-year-old graduate student of biology at Stanford University. Olive’s research focuses on pancreatic cancer, but each chapter begins with a hypothesis about Olive’s love life or choices as is relevant to the chapter’s contents.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1AmKbpWiUz9R6vUDfg2bZX53FR0ZynA_l/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.ErFcGAhY56dQTl9DeOqaVAHaLH?pid=ImgDet&rs=1" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">TWISTED GAMES</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>ANA HUANG</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">She can never be his...but he's taking her anyway. Stoic, broody, and arrogant, elite bodyguard Rhys Larsen has two rules: 1) Protect his clients at all costs 2) Do not become emotionally involved. Ever. He has never once been tempted to break those rules…until her. Bridget von Ascheberg. A princess with a stubborn streak that matches his own and a hidden fire that reduces his rules to ash. She’s nothing he expected and everything he never knew he needed. Day by day, inch by inch, she breaks down his defenses until he’s faced with a truth he can no longer deny: he swore an oath to protect her, but all he wants is to ruin her. Take her.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/13u2Ibr1FxMbTBpTIOS_8pJ_chCD5AoiI/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.edmhK1201PKQ_qCR3C6ekAAAAA?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">TWISTED HATE</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>ANA HUANG</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">He hates her...almost as much as he wants her. Gorgeous, cocky, and fast on his way to becoming a hotshot doctor, Josh Chen has never met a woman he couldn’t charm—except for Jules f**king Ambrose. The beautiful redhead has been a thorn in his side since they met, but she also consumes his thoughts in a way no woman ever has.When their animosity explodes into one unforgettable night, he proposes a solution that’ll get her out of his system once and for all: an enemies with benefits arrangement with simple rules.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1FycbUsIejG66ZLCQobxHsuPM4zq7bNU8/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://laurenbodiford123.files.wordpress.com/2022/06/img_2469.jpg?w=676" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">TWISTED LIES</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>ANA HUANG</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">He'll do anything to have her...including lie. Charming, deadly, and smart enough to hide it, Christian Harper is a monster dressed in the perfectly tailored suits of a gentleman. He has little use for morals and even less use for love, but he can’t deny the strange pull he feels toward the woman living just one floor below him. She’s the object of his darkest desires, the only puzzle he can’t solve. And when the opportunity to get closer to her arises, he breaks his own rules to offer her a deal she can’t refuse.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1LX-U8LB78Qz5vaqh6_r4V6EzMIcni7aE/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://th.bing.com/th/id/OIP.fVRjiz7ZWcPjRypBGdUl6wHaLH?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">TWISTED LOVE</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>ANA HUANG</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">He has a heart of ice...but for her, he'd burn the world. Alex Volkov is a devil blessed with the face of an angel and cursed with a past he can’t escape. Driven by a tragedy that has haunted him for most of his life, his ruthless pursuits for success and vengeance leave little room for matters of the heart.But when he’s forced to look after his best friend’s sister, he starts to feel something in his chest: A crack. A melt. A fire that could end his world as he knew it.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1LKVJWFZ_SpFKS4i1K52USm9rdTH1hrRz/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.YrQsTQez_k_2QhSBMaDGyQHaLU?pid=ImgDet&rs=1" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">Ugly Love</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Colleen Hoover</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Elizabeth Tate Collins, 23, relocates from San Diego to San Francisco to pursue a master’s degree in nursing while working in the ER as a registered nurse. She plans to live with her older brother, Corbin, in his luxury apartment. When she arrives at the apartment, Corbin, an airline pilot, is away at work. Tate meets Cap, the outgoing elevator attendant who becomes her best friend. She also runs into Dillon on the elevator, a sleazy married man who wants to sleep with her. Just when she thinks she is in the clear, she heads to Corbin’s apartment only to find an intoxicated man blocking the door and crying inconsolably.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1CbI4-H7AOGpbPQODZEpsikJS7dqudANp/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+	</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+/* This pen */
+body {
+  font-family: "Baloo 2", cursive;
+  font-size: 20px;
+  color: #000;
+  font-weight: initial;
+}
+.light {
+  background: #f3f5f7;
+}
+a:hover {
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+#pageHeaderTitle {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+}
+
+/* Cards */
+.postcard {
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  border-radius: 10px;
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+  position: relative;
+  color: #000;
+}
+.postcard.light {
+  background-color: #e1e5ea;
+}
+.postcard a {
+  color: inherit;
+}
+.postcard .small {
+  font-size: 80%;
+  margin-top: -2rem;
+}
+.postcard .postcard__title {
+  font-size: 1.75rem;
+}
+.postcard .postcard__img {
+  max-height: 180px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.postcard .postcard__bar {
+  width: 20px;
+  height: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: width 0.2s ease;
+}
+.postcard .postcard__text {
+  padding: -2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.postcard .postcard__preview-txt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+  height: 100%;
+  font-size: 18px;
+
+}
+.postcard .postcard__tagbox {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+  padding: 0;
+  justify-content: center;
+}
+.postcard .postcard__tagbox .tag__item {
+  display: inline-block;
+  background: rgba(83, 83, 83, 0.4);
+  border-radius: 3px;
+  padding: 2.5px 10px;
+  margin: 0 5px 5px 0;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.postcard .postcard__tagbox .tag__item:hover {
+  background: rgba(83, 83, 83, 0.8);
+}
+.postcard:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(-70deg, #424242, transparent 50%);
+  opacity: 1;
+  border-radius: 10px;
+}
+.postcard:hover .postcard__bar {
+  width: 100px;
+}
+
+@media screen and (min-width: 769px) {
+  .postcard {
+    flex-wrap: inherit;
+  }
+  .postcard .postcard__title {
+    font-size: 2rem;
+  }
+  .postcard .postcard__tagbox {
+    justify-content: start;
+  }
+  .postcard .postcard__img {
+    max-width: 230px;
+    max-height: 100%;
+    transition: transform 0.3s ease;
+  }
+  .postcard .postcard__text {
+    padding: 3rem;
+    width: 100%;
+  }
+  .postcard .media.postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    background: #18151f;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard:hover .postcard__img {
+    transform: scale(1.1);
+  }
+  .postcard:nth-child(2n+1) {
+    flex-direction: row;
+  }
+  .postcard:nth-child(2n+0) {
+    flex-direction: row-reverse;
+  }
+  .postcard:nth-child(2n+1) .postcard__text::before {
+    left: -12px !important;
+    transform: rotate(4deg);
+  }
+  .postcard:nth-child(2n+0) .postcard__text::before {
+    right: -12px !important;
+    transform: rotate(-4deg);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .postcard__text {
+    padding: 2rem 3.5rem;
+  }
+
+  .postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard.light .postcard__text:before {
+    background: #e1e5ea;
+  }
+}
+/* COLORS */
+.postcard .postcard__tagbox .green.play:hover {
+  background: #79dd09;
+  color: black;
+}
+.green .postcard__title:hover {
+  color: #79dd09;
+}
+.green .postcard__bar {
+  background-color: #79dd09;
+}
+.green::before {
+  background-image: linear-gradient(-30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+.green:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .blue.play:hover {
+  background: #0076bd;
+}
+.blue .postcard__title:hover {
+  color: #0076bd;
+}
+.blue .postcard__bar {
+  background-color: #0076bd;
+}
+.blue::before {
+  background-image: linear-gradient(-30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+.blue:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .red.play:hover {
+  background: #bd150b;
+}
+.red .postcard__title:hover {
+  color: #bd150b;
+}
+.red .postcard__bar {
+  background-color: #bd150b;
+}
+.red::before {
+  background-image: linear-gradient(-30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+.red:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .yellow.play:hover {
+  background: #bdbb49;
+  color: black;
+}
+.yellow .postcard__title:hover {
+  color: #bdbb49;
+}
+.yellow .postcard__bar {
+  background-color: #bdbb49;
+}
+.yellow::before {
+  background-image: linear-gradient(-30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+.yellow:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+
+@media screen and (min-width: 769px) {
+  .green::before {
+    background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .green:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .blue::before {
+    background-image: linear-gradient(-80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .blue:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .red::before {
+    background-image: linear-gradient(-80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .red:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .yellow::before {
+    background-image: linear-gradient(-80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+  .yellow:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+}
+</style>
+
+<body>
+<section class="light">
+	<div class="container py-2">
+		<div class="text-center" id="pageHeaderTitle">Historical Fiction</div>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://th.bing.com/th/id/R.1ec91ae094c70dc45a2c4dd606a061c1?rik=CXoEO5twPh3D7Q&riu=http%3a%2f%2fprodimage.images-bn.com%2fpimages%2f9798747483828_p0_v1_s1200x630.jpg&ehk=nLXOZcNcWOoys%2f7O3pKQDRqLDJmq%2bsqjTdabm1K8GUE%3d&risl=&pid=ImgRaw&r=0" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">A DAUGHTER OF THE SNOWS</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Jack London</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Set in the Yukon, it tells the story of Stanford graduate Frona Welse, who takes to the trail after upsetting her wealthy father's community by her forthright manner and befriending the town's prostitute. She is also torn between love for two suitors: Gregory St Vincent, a local man who turns out to be cowardly and treacherous; and Vance Corliss, a Yale-trained mining engineer.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1JFpmGxd85lq58EteqFpU1aTKM5xc4V0x/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.1x176cRIEjyNVa6PAjNO_AHaKm?pid=ImgDet&rs=1" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">A Pirate’s Wife</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Lynelle Clark</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Growing up sheltered, Rosa Lee Almaida lived a carefree life after both she and her mother experienced a horrific ordeal on the seas, and in the middle of Africa, when she was only four years. Meeting her adoptive father was the only joyful and good experience as a result thereof; the man honored by all sailors on land and sea for his bravery and unconditional love. He was her hero, and a model for her future husband-to-be. Now, twenty years later, she is forced to return to the seas that claimed the lives of many, including her birth father.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1T47MjXa7f5rcCbJqbQK3GjO-0WsguEnx/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://i0.wp.com/www.cambriabooks.co.uk/wp-content/uploads/2018/08/atheistcover.jpg?fit=486%2C759&ssl=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">AN ATHEISTS’ BIBLE</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Kurtis Sunday</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Paris, during the bloodiest days of the Revolution: a book entitled An Atheists’ Bible is discovered by the authorities. Though it is considered ‘profoundly reactionary and perversely pornographic’, it is published as an example of how decadent and corrupt life under the Old Regime had been. But what is An Atheists’ Bible and who wrote it? It is set in 1759 when the government of Louis XV was in the process of banning Diderot’s great Encyclopédie and the Seven Years War was raging.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1lIU6Xwq2dA12neHeod33pE0uq8CwFqYC/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://th.bing.com/th/id/R.17562920a14e63d40507112756d3a9b6?rik=PXh6uemaePQTUQ&riu=http%3a%2f%2fprodimage.images-bn.com%2fpimages%2f2940044643253_p0_v2_s1200x630.jpg&ehk=qVoSMJeLbNFj2hp%2bnFCz6S%2bdnvmgBUHpmmTjJKq4Yt0%3d&risl=&pid=ImgRaw&r=0" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">BRITANNIA</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Letitia Coyne</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Lucius, Luc, is commander of an auxiliary cavalry unit of Legio XX, Valeria Victrix. The son of a Caledonian mercenary who joined Rome, he and his four brothers are renowned soldiers of great ability and bravery. At 25 he has served ten years, is looking at another fifteen, and has had enough of killing.When Maia is married off to her stepbrother, she is once again abandoned when he returns to his post. Seizing her chance to escape, she joins an exclusive group of travelling priestesses on their way to Britannia. But they can only take her some of the way, and she finds herself moving through a complex web of lies and deceptions, where everyone she meets has a separate agenda...</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/16v-TwtiNu7-fhdJGJ9koTk1pPBZj-cxb/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://www.obooko.com/images-cache/miss-matchs-misadventures-nash-obooko-ebook-a0a788148c35be72ff3930516a7c7c99.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">Miss Match’s Misadventures</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>John C. Nash</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Diana Cassandra Baldwin was born two years after the death of Jane Austen and two years before the death of Napoleon. Clearly she was a product of a romantic and heroic time. Thus it may be presumed her elopement to Gretna Green with her father's assistant apothecary Gerald was exciting and romantic. Unfortunately, Gerald drank some water in Glasgow and died four days into the marriage.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1is-HETvSaV4XTOU8bUsDU6SBgPFk3rwK/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://booktree.ng/wp-content/uploads/2021/06/murder-zero-hour-paul-westwood-207x300.jpg" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">Murder at Zero Hour</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Paul Westwood</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">From the safety of America, William Grant watches as the Great War rages in Europe. Itching for adventure, he travels to Britain to join the army. After a harrowing journey, Grant is accepted into a newly formed regiment. He is posted to France, where he must learn to survive the horrors of war. A popular captain is killed, and all the evidence points to murder. Who in the regiment did the deed? With the help of his comrades, Grant must survive the Battle of the Somme and the evil intentions of an unknown murderer, all while trying to earn the love of a beautiful nurse.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1vGqldPpAHGbglsTR_llP5vadKLUyKJOM/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://th.bing.com/th/id/R.930f1db8cdaa61cc173cf1e5d151300e?rik=pcEtq8AKywEbEA&riu=http%3a%2f%2fprodimage.images-bn.com%2fpimages%2f2940033199242_p0_v3_s600x595.jpg&ehk=hXIlqTsIfs%2fLH9gIFOibnjLzTFuh16kmD6iTS4Ub7Cs%3d&risl=&pid=ImgRaw&r=0" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">NEVER FORGET</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Karen Mason</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">It’s 1912 and on-board the Titanic are two women from very different walks of life. Alice Higgins is an impoverished music hall performer, heavily pregnant and running away with her bounder boyfriend to start a new life in America. Nesta Villiers is the wealthy wife of a brutal man, and is escaping to New York to avoid him committing her to an asylum. When the ship begins to sink, Nesta offers to take the baby Alice gave birth to on-board, onto a lifeboat – promising to return him when they are rescued. But in a case of mistaken identity Nesta thinks Alice has died and claims the baby as her own. But even when they reach New York and she discovers her ‘son’s’ mother is alive and well, she continues to tell people he is hers.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1sfCViVrd-K6SzW2ZDQ8sYdWGIfVr6gPp/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://i.pinimg.com/originals/36/a7/f2/36a7f2b921b8b40206772d28b05f02f2.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">Silly Little Sisters</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Anne Hauden</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">An old, impecunious nobleman lives with his family in his shambles of a country castle, and to make good his failed finances, means to marry off his eldest daughter to a wealthy but disreputable rake – who, on visiting to meet his intended, immediately exercises his roving eye. The trouble is, he also comes with a loaded past that reflects very luridly on his present and has a cynical family of his own.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1QhEgHEVOPhpIDGClwQgFZBzogdglrg_M/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://i.ebayimg.com/images/g/sNAAAOSwiPtg3~61/s-l300.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">Amber Treasure</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Richard Denning</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Cerdic is the nephew of a great warrior who died a hero of the Anglo-Saxon country of Deira. Growing up in a quiet village, he dreams of the glories of battle and of one day writing his name into the sagas. He experiences the true horrors of war, however, when his home is attacked, his sister kidnapped, his family betrayed and his uncle's legendary sword stolen.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/17FY_XeS7gbFFze5R_R_2LBfmv15Ihzo3/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://www.obooko.com/images/covers/lastgift-cogan.jpg" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">The Last Gift</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Susan Brassfield Cogan</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">In 1792, Paris is in flames and the hungry guillotine waits. In The Last Gift, the reader is woven into the fabric of the French Revolution, one of the most chaotic and violent social upheavals of all time. Strong and resourceful heroines, an intrepid hero and a complex and terrifying nemesis are ingredients in a tale of passionate love, bright courage and dark revenge that carries the reader from the royal palace to the shadow of the guillotine.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1gme5mJfZyrco0zXxNu_MPUo_w7ZeC6rB/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://i.pinimg.com/originals/12/9d/c1/129dc1a9b6b019a7106f859019c8b9f5.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">THE SILURIAN</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>L.A. Wilson</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Set in the Dark Ages of Post-Roman Britain, The Silurian is the story of King Arthur told in a compelling new voice. A first person narrative, spoken in grim and graphic detail by Arthur's closest friend and foster-brother, Prince Bedwyr, the Fox. A boy of sixteen, taken to his first great conflict, Bedwyr begins his story on the battlefield where Arthur lies missing after having won his first engagement to war against the invading Saxons, Hengist and Horsa. This is the Fifth Century AD, a time of fierce honesty, as Bedwyr's own words speak it, the words of a young warrior who lives his life in the blood, guts, turmoil and love of an age that was both brutal and brilliant.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1bRIhiDw84c7gVqMWvocENNyMzg06xYNG/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://i.ebayimg.com/images/g/OhAAAMXQn11RfrRX/s-l300.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">WHEN WOMEN WERE WARRIORS</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Catherine M. Wilson</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">In Book I of the trilogy, Tamras, our hero, arrives in Merin's house to begin her apprenticeship as a warrior, but her small stature causes many, including Tamras herself, to doubt that she will ever become a competent swordswoman. To make matters worse, the Lady Merin assigns her the position of companion, little more than a personal servant, to a woman who came to Merin's house, seemingly out of nowhere, the previous winter, and this stranger wants nothing to do with Tamras.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1TjegqU4K_0GsCNLgqI0197lkYZoI9o3n/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://dwtr67e3ikfml.cloudfront.net/bookCovers/dd1f8c7f69ea8940424fa4ea40586b088a2d49ef" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">The Witch Queen’s Secret</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>ANNA ELLIOTT</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">A young mother, living in the In the shadow of King Arthur's Britain, will require all her courage to save the Queen's castle from the hands of a traitor. This is a stand-alone novel of Trystan and Isolde featuring a secondary character from the universe of Twilight of Avalon.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1w-Jc0T4oWYTjm7EddtqpGpr2zZvV9o3i/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://i.thenile.io/r1000/9781617200991.jpg?r=5e49f33239666" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">WULF THE SAXON</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>G. A. Henty</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">A classic tale of nobility, loyalty and courage set in 11th century Britain. It relates the adventures of Wulf, a young, but extremely capable Saxon Thane. Wulf with his friends and servitors devote their lives to the service of Harold Godwinson, both before and after he becomes king of England. They are directly involved in capturing castles, rescuing shipwreck survivors, foiling assassination attempts and entering the terrible battles at Stamford Bridge and Senlac field by Hastings.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1McuqsCi-HU5E5pOq0T25G8hOcmBCqOdZ/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+	</div>
+</section>
+</body>
+</html>

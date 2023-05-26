@@ -1,0 +1,567 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+body {
+  font-family: "Baloo 2", cursive;
+  font-size: 20px;
+  color: #000;
+  font-weight: initial;
+}
+.light {
+  background: #f3f5f7;
+}
+a:hover {
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+#pageHeaderTitle {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+}
+
+/* Cards */
+.postcard {
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  border-radius: 10px;
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+  position: relative;
+  color: #000;
+}
+.postcard.light {
+  background-color: #e1e5ea;
+}
+.postcard a {
+  color: inherit;
+}
+.postcard .small {
+  font-size: 80%;
+  margin-top: -2rem;
+}
+.postcard .postcard__title {
+  font-size: 1.75rem;
+}
+.postcard .postcard__img {
+  max-height: 180px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+.postcard .postcard__bar {
+  width: 20px;
+  height: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: width 0.2s ease;
+}
+.postcard .postcard__text {
+  padding: -2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.postcard .postcard__preview-txt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+  height: 100%;
+  font-size: 18px;
+}
+.postcard .postcard__tagbox {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+  padding: 0;
+  justify-content: center;
+}
+.postcard .postcard__tagbox .tag__item {
+  display: inline-block;
+  background: rgba(83, 83, 83, 0.4);
+  border-radius: 3px;
+  padding: 2.5px 10px;
+  margin: 0 5px 5px 0;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.postcard .postcard__tagbox .tag__item:hover {
+  background: rgba(83, 83, 83, 0.8);
+}
+.postcard:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(-70deg, #424242, transparent 50%);
+  opacity: 1;
+  border-radius: 10px;
+}
+.postcard:hover .postcard__bar {
+  width: 100px;
+}
+@media screen and (min-width: 769px) {
+  .postcard {
+    flex-wrap: inherit;
+  }
+  .postcard .postcard__title {
+    font-size: 2rem;
+  }
+  .postcard .postcard__tagbox {
+    justify-content: start;
+  }
+  .postcard .postcard__img {
+    max-width: 230px;
+    max-height: 100%;
+    transition: transform 0.3s ease;
+  }
+  .postcard .postcard__text {
+    padding: 3rem;
+    width: 100%;
+  }
+  .postcard .media.postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    background: #18151f;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard:hover .postcard__img {
+    transform: scale(1.1);
+  }
+  .postcard:nth-child(2n+1) {
+    flex-direction: row;
+  }
+  .postcard:nth-child(2n+0) {
+    flex-direction: row-reverse;
+  }
+  .postcard:nth-child(2n+1) .postcard__text::before {
+    left: -12px !important;
+    transform: rotate(4deg);
+  }
+  .postcard:nth-child(2n+0) .postcard__text::before {
+    right: -12px !important;
+    transform: rotate(-4deg);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .postcard__text {
+    padding: 2rem 3.5rem;
+  }
+  .postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard.light .postcard__text:before {
+    background: #e1e5ea;
+  }
+}
+
+/* COLORS */
+.postcard .postcard__tagbox .green.play:hover {
+  background: #79dd09;
+  color: black;
+}
+.green .postcard__title:hover {
+  color: #79dd09;
+}
+.green .postcard__bar {
+  background-color: #79dd09;
+}
+.green::before {
+  background-image: linear-gradient(-30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+.green:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+.postcard .postcard__tagbox .blue.play:hover {
+  background: #0076bd;
+}
+.blue .postcard__title:hover {
+  color: #0076bd;
+}
+.blue .postcard__bar {
+  background-color: #0076bd;
+}
+.blue::before {
+  background-image: linear-gradient(-30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+.blue:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+.postcard .postcard__tagbox .red.play:hover {
+  background: #bd150b;
+}
+.red .postcard__title:hover {
+  color: #bd150b;
+}
+.red .postcard__bar {
+  background-color: #bd150b;
+}
+.red::before {
+  background-image: linear-gradient(-30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+.red:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+.postcard .postcard__tagbox .yellow.play:hover {
+  background: #bdbb49;
+  color: black;
+}
+.yellow .postcard__title:hover {
+  color: #bdbb49;
+}
+.yellow .postcard__bar {
+  background-color: #bdbb49;
+}
+.yellow::before {
+  background-image: linear-gradient(-30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+.yellow:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+@media screen and (min-width: 769px) {
+  .green::before {
+    background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .green:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .blue::before {
+    background-image: linear-gradient(-80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .blue:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .red::before {
+    background-image: linear-gradient(-80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .red:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .yellow::before {
+    background-image: linear-gradient(-80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+  .yellow:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+}
+</style>
+<body>
+<section class="light">
+	<div class="container py-2">
+		<div class="text-center" id="pageHeaderTitle">Action & Adventure</div>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://images.gr-assets.com/books/1424539232l/24987458.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">ACROSS THE POND</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Micheal McCormick</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">With this work, McCormick takes his place among the other important chroniclers of this period. He reminds us that these stories are still out there, needing to be told, needing to be listened to and remembered. Each and every one of these stories adds up to a greater understanding of the time we have all passed through. It is our common history and will remain so forever. This beautiful little book should be required reading in every high school, along with the other books of the Vietnam war. Because of its brevity, stature, and dignity, I am confident Across the Pond will last.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1wloOyWOkL_X9VEjqZBR9lFC7ry3xfTRT/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://i.pinimg.com/originals/20/e9/77/20e977c3d4ff50bfecd1fa407ebd4512.jpg" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">Agent with a History</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Guy S. Stanton, III</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">It's been one long day for Lisa and her headache is living proof of it. Most of it she blamed on the full moon outside. Things always got crazy this time of the month, but this month was exceptional. She needed sleep bad and only hoped the nightmares that haunted her would leave her alone for at least one night. They don't. She wakes up as usual screaming only to find out that her nightmare has just begun, because she's not alone in her room. One man has been gruesomely tortured to death in a ritualistic killing. An entire police precinct has been reconstructed down to the smallest detail in an abandoned warehouse and a mysterious stranger known only as Flint seems to be the cause of it all.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1uZ6Rc19xPFtsGDRw2V_ZXSuaoxnjYLOq/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://www.obooko.com/images/covers/directaction-fitzgerald.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">Direct Action</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Tom Fitzgerald</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">The three men and one woman walked into the chief justice’s chamber on the eighth floor of the Department of Justice Building, better known as the J. Edgar Hoover building. They; along with the chief justice were all federal district court judges until they were selected; and then accepted their present assignment. Only five government officials knew their assigned purpose, one being the President of the United States, who was the only one they answered to. The court they presided over is known as “The Ultra Court.” All documents and decisions by this court are classified “Ultra-Secret - President’s Eyes Only.” </div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1BUWFUgGPtXfbNe8tZ4Wr7O6zZjVfqfYe/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://th.bing.com/th/id/R.9d986f20f8c98dfdb784f0d731251ff2?rik=ixV7PJ%2bhtMgv5Q&riu=http%3a%2f%2fwww.ascensionepoch.com%2fwp%2fwp-content%2fuploads%2f2014%2f04%2fhouse-of-refuge-kindle03final.jpg&ehk=j0AD3cyUUts9AOiNSlXfKgsrRnkjfLmwA4zzqMrt5J4%3d&risl=&pid=ImgRaw&r=0" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">House of Refuge</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Michael A. DiBaggio</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Justin Agnarsson is stationkeeper and lone crewman of South Atlantic House of Refuge #49, a floating sanctuary for the thousands of mariners and seasteading families who live and work in the 350-mile long Plata Raft. Now, war threatens to bring an end to his lifesaving mission as an Argentine warship pursues a pair of refugees to the station. A house of refuge is supposed to be inviolable, but the Argentines are hell-bent on their mission. Alone and virtually defenseless, Agnarsson faces an impossible choice between duty and survival. But when the brutality of war threatens to unravel the fabric of civilization, more than lives are at stake.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1scfjgSdM7CFPNfsASRi6u_rGg9aEWXvG/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://www.obooko.com/images/covers/keyhole-island-charles-coiro.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">KEYHOLE ISLAND</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Charles Coiro</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">It was listed as an endurance trip for only the most experienced and physically fit young men and women between the ages of 21 and 28 who had experience in endurance sports such as mountain climbing, caving, racing, survival living, skiing and motor cycling. Its itinerary included a learning cruise for those who never sailed on a two-masted, square topsail schooner from San Francisco to Australia and then an endurance hike across the Outback to the western coast. The journey would include the Anyang, Poitjantdatura and Yankunyryatjara lands where the Aboriginal tribes still live and the mountainous area of New Zealand.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1eeB4AnpIaimMr4vH2obMGlxLJGaXE5j9/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://i.pinimg.com/736x/82/d2/b3/82d2b35f59c258674913519f68127e67.jpg" alt="Image Title"/>	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">My Brother 's a Spy</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Alex Roysh</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">The story is about a wily Kremlin plot to ship a boatload of high-tech Russian and German arms to Argentina, and, in this way, spark the second Falkland War. The MI6's tardy attempts to derail the deal are wrecked by the German intelligence. While the British military are at their wits' end, two honest and uncompromising brothers, Englishmen from Holland, take the lead. After a series of dramatic, funny, seemingly impossible events, the arms ship finally deviates from its course and beaches on a rugged shore - little more than eight thousand miles away from its goal.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1_XVdOYRFLmVkVC8GKcMVnKZCEWizxklY/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://www.obooko.com/images/covers/reluctant-man-hungary-donald.jpg" alt="Image Title"/>
+			<div class="postcard__text">
+				<h1 class="postcard__title green">Our Reluctant Man in Hungary</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Ken Donald</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">It is 1956 and Hungary's rebels desperately need the help of the West if they are to overthrow their communist masters. Could this be another job for Captain Thomas Fletcher, RAF pilot and unwilling member of the Secret Intelligence Service? Seduced by the beautiful Anna Novak and facing the wrath of Colonel Kutuzov, the brother of his late adversary, can Fletcher secure Hungary's freedom?</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1RoMVoEp0Fdo6GPoFrnjYVqGS45nYA61b/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://th.bing.com/th/id/R.1080e93fbaccb6347cda90fc180ab386?rik=giDEQw0BIHGbCw&riu=http%3a%2f%2fimg1.imagesbn.com%2fp%2f2940011088476_p0_v2_s260x420.JPG&ehk=5DwxMLw05LB7YHPfe9vaN%2fx1pW1S1oyzT3FB7QueLuA%3d&risl=&pid=ImgRaw&r=0" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">Project Cyclops</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>THOMAS HOOVER</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">“A high-tech launch site, a missing nuke, and Arab terrorists with nothing to lose . . .” In the sun-dappled waters of the Aegean, ex-agent Michael Vance pilots the Odyssey II, a handmade replica of the sailcraft of the ancient hero Ulysses.  Out of nowhere, a Russian Hind gunship with Arab terrorists at the helm fires upon the tiny ship below.  The terrorists’ destination is a tiny Aegean island where a U.S. aerospace corporation carefully guards the Cyclops 20-megawatt laser launch facility.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1TGzihHoSjQLI9f6Qgmd46rfksZTs-cwx/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://th.bing.com/th/id/OIP.LqJ00G7JKIm6c7Ctf2RK-AAAAA?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">Sabina's Pursuit of The Holy Grail</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Martin Lundqvist</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Being reborn in the 21st century, Sabina must stop the apocalypse from happening in the 29th century. Sabina is a gifted 18-year-old girl living in Sydney, in the year 2037. She carries a unique secret. Sabina used to be the Chosen One, but she failed to stop the apocalypse from occurring in the year 2887. As she died, she asked The True Maker to let her be reborn in 2019 and to keep her powers. But stopping evil is not an easy task, and what sacrifices must Sabina make to reach her goal. Will Sabina be able to retain her innocence throughout the ordeal?</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1P0wM35O1e2M_73N7fMGxDThnr2ExNA1c/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.cE_tvvESFkKbRGaGbVS5RwAAAA?pid=ImgDet&rs=1" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">THE DOOMSDAY PLAN</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>JOHN FRANCIS KINSELLA</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Concerned by sombre visions of the future, Pat Kennedy had increasingly sought the experience and advice of his friend John Francis, not regarding markets and economics, but the future of humanity as it stood. The response was not encouraging. The idea that he should protect his family and friends slowly took form. Quietly he set about a project he named Salvator Mundi, one that would not only offer protection, but an alternative future. </div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/19SqykS9Hs6HOGicaQMVNNd9Hgk6bLiEz/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://images-na.ssl-images-amazon.com/images/I/51TXR-JNqHL._SY445_QL70_ML2_.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">THE EARTH GODDESS</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Richard Herley</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">It is 3000 BC. The cult of the Earth Goddess is controlled throughout the vast empire of Europe by the secretive and unscrupulous Red Order, the priesthood which manipulates all power for its own ends. The land that is now called England has been annexed and its lord, Brennis Gehan Fifth, betrayed and murdered. The Lady Altheme, his consort, has escaped to the forest. She is carrying his son, Paoul, rightful inheritor of the Valdoe doma</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1bQ4kMfv84xzlWb4mUKJKkmNhC363L24E/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://m.media-amazon.com/images/I/51xEnuxthDL.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">The Farm</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Max M. Power</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Jonathan and Johnson are wanted men after destroying the mafia in New York. Safe passage is offered to them by the CIA but not everyone agrees they fit in, including them. The two find themselves outcast while going through the motions at The Farm, the training location for all CIA agents, by all the instructors as well as some of the top performing students. When the chief instructor decides to take matters into his own hands the only outcome is death. The pair find themselves on the run yet again but are they capable of outrunning the CIA?</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/12Vn7HMeQokUyo7xC7Ck3oOb10ehtWRjt/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://th.bing.com/th/id/OIP.TwdakhOfa5nA14OUZXJl8AAAAA?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">The Gang Of Four </h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Richard Lawther</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Since distant prehistoric times humanity has been controlled and developed by an alien race known as the Sponsors, but over the course of one brutally destructive afternoon our alien benefactors are annihilated and their remnants expelled from Earth, never to return. For the first time in its existence humanity stands as a fully independent species. But far from this being liberation, the "human system" is now left in a precarious state and complete collapse seems imminent.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1lYekEwHRupV8IaWlaOPil2Dmg6vuOanv/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.Rw_JzRWjb6hE8p-2CLuw0wAAAA?pid=ImgDet&rs=1" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">The Glass Palace Chronicle</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Patricia le Roy</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Claudia, an English student down on her luck, meets Paul in a bar in Paris, agrees to accompany him to Burma, and finds herself travelling back in time to a magical country where oxcarts outnumber automobiles, enchantment rubs shoulders with poverty, and the government has resorted to wholesale drug trafficking to keep the economy afloat. But Paul has enemies who want to see him dead. Magic turns into nightmare, the journey becomes a flight - and then Claudia finds out what Paul really wants her do to.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1AY-tVXzD80vz1TzOKGpgpqIlLKGivLGI/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://www.obooko.com/images/covers/the-hand-of-god-mcneur.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">The Hand of God</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>George McNeur</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">As the last notes of the call echoed around the rafters of the dojo, he breathed in – slowly, through his nose, pushing the air up to the top and back of his head, then smoothly exhaling out through his mouth as he pushed the air down his spine to his toes and then all the way back up to the top of his head as he inhaled again. Jim had been training Kendo now for about 4 years, and he always looked forward to the circular breathing session at the close of training. After a fast and furious hour and a bit of smacking the living shit out of everyone else, that first deep breath in & out was kind of delicious! </div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1xDfIKGsV9ULFmYMZkNPPcwgSYL4qEShi/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.Y7Yzw1O2b3teDq1e40Y1UgHaLH?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">The Invisible Drone</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Mike Dixon</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">The Boeing-717 left Paris for Toronto and failed to arrive. It was carrying delegates to a conference on globalisation. Petra's father arranged the conference. He had damning evidence that global power was falling into the hands of a small number of ruthless individuals seeking world domination. He called them The Cabal Petra had no doubt The Cabal existed. Once, it had seemed distant, like the things she learnt about at university. Now, it had taken on a frightening reality. Her father's plane was almost certainly sabotaged. As heir to the de Villiers fortune she was at great risk.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1QfkOvgghdPPpQz_mqgzCGcGshDjQ0w24/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://www.obooko.com/images/covers/the-last-ancestor.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">THE LAST ANCESTOR</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>John Francis Kinsella</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Scott Fitznorman is an international dealer in Asian and Tribal Art with galleries in London and Paris. He and Kate Lundy set off for Borneo in search of valuable ethnic art and the heirlooms of the tribal peoples living in the longhouses in the mountainous regions of Sarawak. They make a startling discovery and a scientific expedition sets out to explore the traces of human ancestors deep in the rainforests of Borneo. Scott’s research leads him into an adventure in the history of human origins, criss-crossing the planet in search of explanations, as a wave of violence wracks Indonesia caught up in the throes of an insurrectional crisis.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1GZsUnPBqViWkThtyTwvuMYYQWG9t4rYD/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.AzNwPtJ78Imf7eB8CsFDCwAAAA?pid=ImgDet&rs=1" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">THE LEGEND OF DARKNESS AND LIGHT</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Kristine Williams</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">“I wish I could.” Saul Trubnick sighed and shook his head as he took a seat on the couch, slouching in defeat. His niece was pacing the room in a short pattern that promised to wear a rut into the rare wood floor if she didn’t stop soon. Her short turns and angry stomping adding to the stress he was already feeling. Next to him, sitting in a chair looking pensive and angry, was her brother. He wasn’t pacing, but Saul didn’t think his nephew realized he was tapping the arm of the chair in a nervous, rapid pattern nearly in step with his sister’s stride.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1omJscjU9tn7uQHOa-Q5GmHg_g1PKgSHJ/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://www.obooko.com/images/covers/the-ring-pearce.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">The Ring</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Bradley Pearce</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">An adventure that will take you on an historical journey across Europe to Istanbul. A father trying to protect his son. Relic collectors all in pursuit of a holy relic. A killer Cardinal hell bent on stopping them. Shoot outs, car chases and close escapes. A journey to the heart of Transylvania. A coffee shop girl and a white daisy. An Angelic Father watches over the package. But what, or who? Arthur, an unlikely lad from the East End of London who wished an adventure and so set in motion the End of Days. </div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1JU60mSY_p9C5SG4b_ysUoZXsdoY9VjzQ/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://th.bing.com/th/id/R.2cd6188df9e831de036d5a5864d5c8d7?rik=usjRoA3ybQ%2bApw&riu=http%3a%2f%2fprodimage.images-bn.com%2fpimages%2f9781409211099_p0_v1_s1200x630.jpg&ehk=YPHb43hqgF89oefkWtWMkBk1bxWjknedohyWMqDUApQ%3d&risl=&pid=ImgRaw&r=0" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">The Rings of Poseidon</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Mike Crowson</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">A team of archaeologists, led by Afro-Caribbean Alycia Graham is a Stone Age site in the Orkney Islands north of Scotland when they uncover a remarkably preserved copper ring ... a ring which seems to have the power to give the wearer a glimpse of the past ... but is their own past or that of the Ring? Why are all the team somehow connected with the ring? What is a metal ring doing so far back in the Stone Age, and who is seeking the ring over millenia?</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/18C5xmGMCA3DQw7bLfsnhnveFqgaw1Fh8/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://www.obooko.com/images/covers/three-wishes-pearce.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">Three Wishes </h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Bradley Pearce</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">The Ravens, a rock band on the verge of discovery, have a performance that ends in a complete train wreck. Crushing the hopes and dreams of their sound engineer and manager, Terry. A Jinn grants him three wishes that go awry, as all wishes do. And he finds himself stubbornly reliving the past four weeks over, and over, and over again. Julie busks in the Waterloo Underground with vague memories of a strange recurring dream. It’s a love story, but it’s complicated. Card players trapped in purgatory. One waiting for a way out. Terry appears at the door. You have to be in to win. So, are you in, or are you out?</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/11nGcioVXa9ANiIrIOH-vrosaZZ982mKn/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+	</div>
+</section>
+</body>
+</html>

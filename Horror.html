@@ -1,0 +1,453 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+/* This pen */
+body {
+  font-family: "Baloo 2", cursive;
+  font-size: 20px;
+  color: #000;
+  font-weight: initial;
+}
+.light {
+  background: #f3f5f7;
+}
+a:hover {
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+#pageHeaderTitle {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+}
+
+/* Cards */
+.postcard {
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  border-radius: 10px;
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+  position: relative;
+  color: #000;
+}
+.postcard.light {
+  background-color: #e1e5ea;
+}
+.postcard a {
+  color: inherit;
+}
+.postcard .small {
+  font-size: 80%;
+  margin-top: -2rem;
+}
+.postcard .postcard__title {
+  font-size: 1.75rem;
+}
+.postcard .postcard__img {
+  max-height: 180px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.postcard .postcard__bar {
+  width: 20px;
+  height: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: width 0.2s ease;
+}
+.postcard .postcard__text {
+  padding: -2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.postcard .postcard__preview-txt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+  height: 100%;
+  font-size: 18px;
+
+}
+.postcard .postcard__tagbox {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+  padding: 0;
+  justify-content: center;
+}
+.postcard .postcard__tagbox .tag__item {
+  display: inline-block;
+  background: rgba(83, 83, 83, 0.4);
+  border-radius: 3px;
+  padding: 2.5px 10px;
+  margin: 0 5px 5px 0;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.postcard .postcard__tagbox .tag__item:hover {
+  background: rgba(83, 83, 83, 0.8);
+}
+.postcard:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(-70deg, #424242, transparent 50%);
+  opacity: 1;
+  border-radius: 10px;
+}
+.postcard:hover .postcard__bar {
+  width: 100px;
+}
+
+@media screen and (min-width: 769px) {
+  .postcard {
+    flex-wrap: inherit;
+  }
+  .postcard .postcard__title {
+    font-size: 2rem;
+  }
+  .postcard .postcard__tagbox {
+    justify-content: start;
+  }
+  .postcard .postcard__img {
+    max-width: 230px;
+    max-height: 100%;
+    transition: transform 0.3s ease;
+  }
+  .postcard .postcard__text {
+    padding: 3rem;
+    width: 100%;
+  }
+  .postcard .media.postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    background: #18151f;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard:hover .postcard__img {
+    transform: scale(1.1);
+  }
+  .postcard:nth-child(2n+1) {
+    flex-direction: row;
+  }
+  .postcard:nth-child(2n+0) {
+    flex-direction: row-reverse;
+  }
+  .postcard:nth-child(2n+1) .postcard__text::before {
+    left: -12px !important;
+    transform: rotate(4deg);
+  }
+  .postcard:nth-child(2n+0) .postcard__text::before {
+    right: -12px !important;
+    transform: rotate(-4deg);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .postcard__text {
+    padding: 2rem 3.5rem;
+  }
+
+  .postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard.light .postcard__text:before {
+    background: #e1e5ea;
+  }
+}
+/* COLORS */
+.postcard .postcard__tagbox .green.play:hover {
+  background: #79dd09;
+  color: black;
+}
+.green .postcard__title:hover {
+  color: #79dd09;
+}
+.green .postcard__bar {
+  background-color: #79dd09;
+}
+.green::before {
+  background-image: linear-gradient(-30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+.green:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .blue.play:hover {
+  background: #0076bd;
+}
+.blue .postcard__title:hover {
+  color: #0076bd;
+}
+.blue .postcard__bar {
+  background-color: #0076bd;
+}
+.blue::before {
+  background-image: linear-gradient(-30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+.blue:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .red.play:hover {
+  background: #bd150b;
+}
+.red .postcard__title:hover {
+  color: #bd150b;
+}
+.red .postcard__bar {
+  background-color: #bd150b;
+}
+.red::before {
+  background-image: linear-gradient(-30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+.red:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .yellow.play:hover {
+  background: #bdbb49;
+  color: black;
+}
+.yellow .postcard__title:hover {
+  color: #bdbb49;
+}
+.yellow .postcard__bar {
+  background-color: #bdbb49;
+}
+.yellow::before {
+  background-image: linear-gradient(-30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+.yellow:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+
+@media screen and (min-width: 769px) {
+  .green::before {
+    background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .green:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .blue::before {
+    background-image: linear-gradient(-80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .blue:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .red::before {
+    background-image: linear-gradient(-80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .red:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .yellow::before {
+    background-image: linear-gradient(-80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+  .yellow:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+}
+</style>
+
+<body>
+<section class="light">
+	<div class="container py-2">
+		<div class="text-center" id="pageHeaderTitle">Horror</div>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://www.obooko.com/images-cache/abigails-window-hayes-obooko-horror-bc298122e96c13736dfb0aa7d91f4ca5.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">Abigail’s Window</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Michael Hayes</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Abigail has a special gift and a special heart. She must use that gift to stop the evil that has come into her life. She must be stronger then she ever imagined possible and along the way she changes her entire life and will save the lives of others.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1JL0wWtpsqmgD2ZK4dx2bm35cvM8Hwvnp/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://www.obooko.com/images/covers/as-darkness-breaks-newell.jpg" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">Darkness Breaks</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Jonny Newell</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">I was 11 nearly 12 when it happened, and what I still have no idea but only knowing I awoke to a new day of death. Everyone was dead, and I mean everyone, even my pet hamster, Tiffy. You can well imagine the distress of that initial day, finding my family not waking with me. I thought they were simply sleeping but they weren’t! I waited until 8:30 and believed they had just slept in being a weekend day. I was alerted when I turned on the TV to watch music video clips but the screen was just snow!</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/16qwM7BAlIMwNdQ_8U-T48ymgmqmDp8G1/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1667996125i/63262208.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">Bottled Nightmares</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>David Dwan</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Six tales of the macabre and supernatural. A mysterious doll appears to haunt an amnesiac who may or may not be a murderer. A long-forgotten railway carriage is discovered by two young children, but what dwells within the very wood and steel of its structure? A hapless male model blunders his way to safety in a state-of-the-art shelter as Armageddon looms. Will it be his sanctuary or his tomb?</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1yaaYkZJVA3U_cbzU2dY3PTh95MDrIGmy/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://imgv2-1-f.scribdassets.com/img/word_document/240626695/original/f03c4d725a/1618841566?v=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">Grosvenor Lane Ghost</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Jeremy Tyrrell</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">The Victorian era is a time of scientific innovation and exciting prospects. Ghosts and goblins as a science? Paranormology? Bah! Why, one might sooner embark on a trip to the moon! Grosvenor Lane Ghost chronicles my first experience with the Professor, my mentor and employer, and the extraordinary glimpse into his world where haunted houses are the least of his worries.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1qHiPdPNjzdHWK2epIsKBzf0mnrSAAGDR/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1414790531i/21624921._UY200_.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">Hidden Highway</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Tom Lichtenberg</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Sharad LeMaster ran away from his own cult, and tried to hide from his followers by taking a desk job in a motel in the middle of nowhere, but when a certain lazy ghost from his past reappears, Sharad is lured into a haunted house and becomes the proud possession of the witch Eugenia, and gets caught between rival black market magic potion dealers in their fight over a girl who just happens to possess the most perfect skull ever destined to become a shrunken head.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1Hts93BLmCKiqP4kIpEayYk2mlKDVptC8/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.6Et59UlQtBrnSFY-4uZosgAAAA?pid=ImgDet&rs=1" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">Jolimont Street Ghost</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Jeremy Tyrrell</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">What people get up to in the privacy of their own homes is their business. That is unless it spills out into the streets. My experiences with the Professor have shown me much about the intricacies of Paranormology, yet nothing prepared me for what I would face in the basement of a house in Jolimont Street. The evil that lurked their, conjured from some dark netherworld, threatened to take our lives and our souls.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1j63n70OfKL376dN1A8DzE-4gxDGjy-kZ/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://i.pinimg.com/originals/2b/4b/c2/2b4bc2257ba40258ac38bac2caf0f07b.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">Scary Mary</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>S.A. Hunter</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Mary just wants to be left alone, but the cheerleaders, jocks, and ghosts won't stop harassing her. When new student Cyrus starts school, he tries to befriend her. That's a rare thing for the school freak, but her unusual abilities put a rift in their budding friendship when she has to tell him that his home is haunted and not by Casper, the friendly ghost.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1v3jSLhe7S4p__wkc4hiTFzVpvE7acJjS/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://www.instantlibraries.com/static/books/covers/1400952659.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">Tales of Horror and the Supernatural</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Graeme Winton</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">A group of short stories of which I have written over a number of years, and have just fine-tuned. There are tales of revenge, haunting and possession to enjoy, but don't have sleepless nights!</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1FA4PMWYrJVTbycC5rm8-LVnKbCyyHBp8/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://www.obooko.com/images/covers/curse-groveford-edwards.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">The Curse of Groveford</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Demetrius J. Edwards</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">This horrifying story follows an unsuspecting family that moves from Miami to a sleepy Alabama town called Groveford. What they don't know, however, is that for years Groveford has inexplicably been the subject of savage murders at the hands of a mysterious cult and they are the next victims.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1GS_N8FG4XRNNFwLkVmAD0C3vBo0fXuAq/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://www.obooko.com/images/covers/seventh-sense-warren.jpg" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">The Seventh Sense</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Nick Warren</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Eleven stories of horror and the supernatural. Meet creatures of evil and destruction both human and not. A dark family with a white sheep. An enforcer tracking a deranged killer. Criminals of the future and the present. Abusers and the abused. An old man with an amazing power. A writer on a rich man's quest and one rare young woman with the seventh sense.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1r7Sh_qKysKKQtzMuIFtyfDsBNJ5Kywy1/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.aHtep85Nd4cJxqglnLXZ1gHaLH?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">The Zombie Chronicles</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Chrissy Peebles</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Val was bitten by a zombie and now she's scheduled for lethal injection. Breaking all the rules, eighteen year old, Dean Walters snags an experimental serum. But it can't be tested until Val turns into a zombie: something authorities won't allow. Her execution is scheduled to happen before transformation is complete, giving Dean only hours to break her out. When their helicopter crashes straight into the heart of Zombie Land, his rescue mission becomes a fight for survival...and giving up on Val is not an option.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1IQRboC2iOhJSO8OXshxsKe-a_W1h9Giq/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://e5v8x4i7.stackpathcdn.com/wp-content/uploads/2016/01/zombienightforest.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">Zombie Nights</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Tom Lichtenberg</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Being a zombie, not so easy. That could have been Dave Connor's six word memoir. "At first he couldn't remember how he'd ended up in that shallow grave; he just knew it was hell to claw his way out, and that the taste of its dirt would remain in his mouth for the rest of his time on this earth" ... Expect the unexpected in this existential resurrection thriller.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1WqZiITK-IRUHa186FU-ffL1FAduoJISt/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+	</div>
+</section>
+</body>
+</html>

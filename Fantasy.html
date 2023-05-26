@@ -1,0 +1,523 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+/* This pen */
+body {
+  font-family: "Baloo 2", cursive;
+  font-size: 20px;
+  color: #000;
+  font-weight: initial;
+}
+.light {
+  background: #f3f5f7;
+}
+a:hover {
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+#pageHeaderTitle {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+}
+
+/* Cards */
+.postcard {
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  border-radius: 10px;
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+  position: relative;
+  color: #000;
+}
+.postcard.light {
+  background-color: #e1e5ea;
+}
+.postcard a {
+  color: inherit;
+}
+.postcard .small {
+  font-size: 80%;
+  margin-top: -2rem;
+}
+.postcard .postcard__title {
+  font-size: 1.75rem;
+}
+.postcard .postcard__img {
+  max-height: 180px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.postcard .postcard__bar {
+  width: 20px;
+  height: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: width 0.2s ease;
+}
+.postcard .postcard__text {
+  padding: -2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.postcard .postcard__preview-txt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+  height: 100%;
+  font-size: 18px;
+
+}
+.postcard .postcard__tagbox {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+  padding: 0;
+  justify-content: center;
+}
+.postcard .postcard__tagbox .tag__item {
+  display: inline-block;
+  background: rgba(83, 83, 83, 0.4);
+  border-radius: 3px;
+  padding: 2.5px 10px;
+  margin: 0 5px 5px 0;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.postcard .postcard__tagbox .tag__item:hover {
+  background: rgba(83, 83, 83, 0.8);
+}
+.postcard:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(-70deg, #424242, transparent 50%);
+  opacity: 1;
+  border-radius: 10px;
+}
+.postcard:hover .postcard__bar {
+  width: 100px;
+}
+
+@media screen and (min-width: 769px) {
+  .postcard {
+    flex-wrap: inherit;
+  }
+  .postcard .postcard__title {
+    font-size: 2rem;
+  }
+  .postcard .postcard__tagbox {
+    justify-content: start;
+  }
+  .postcard .postcard__img {
+    max-width: 230px;
+    max-height: 100%;
+    transition: transform 0.3s ease;
+  }
+  .postcard .postcard__text {
+    padding: 3rem;
+    width: 100%;
+  }
+  .postcard .media.postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    background: #18151f;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard:hover .postcard__img {
+    transform: scale(1.1);
+  }
+  .postcard:nth-child(2n+1) {
+    flex-direction: row;
+  }
+  .postcard:nth-child(2n+0) {
+    flex-direction: row-reverse;
+  }
+  .postcard:nth-child(2n+1) .postcard__text::before {
+    left: -12px !important;
+    transform: rotate(4deg);
+  }
+  .postcard:nth-child(2n+0) .postcard__text::before {
+    right: -12px !important;
+    transform: rotate(-4deg);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .postcard__text {
+    padding: 2rem 3.5rem;
+  }
+
+  .postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard.light .postcard__text:before {
+    background: #e1e5ea;
+  }
+}
+/* COLORS */
+.postcard .postcard__tagbox .green.play:hover {
+  background: #79dd09;
+  color: black;
+}
+.green .postcard__title:hover {
+  color: #79dd09;
+}
+.green .postcard__bar {
+  background-color: #79dd09;
+}
+.green::before {
+  background-image: linear-gradient(-30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+.green:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .blue.play:hover {
+  background: #0076bd;
+}
+.blue .postcard__title:hover {
+  color: #0076bd;
+}
+.blue .postcard__bar {
+  background-color: #0076bd;
+}
+.blue::before {
+  background-image: linear-gradient(-30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+.blue:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .red.play:hover {
+  background: #bd150b;
+}
+.red .postcard__title:hover {
+  color: #bd150b;
+}
+.red .postcard__bar {
+  background-color: #bd150b;
+}
+.red::before {
+  background-image: linear-gradient(-30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+.red:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .yellow.play:hover {
+  background: #bdbb49;
+  color: black;
+}
+.yellow .postcard__title:hover {
+  color: #bdbb49;
+}
+.yellow .postcard__bar {
+  background-color: #bdbb49;
+}
+.yellow::before {
+  background-image: linear-gradient(-30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+.yellow:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+
+@media screen and (min-width: 769px) {
+  .green::before {
+    background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .green:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .blue::before {
+    background-image: linear-gradient(-80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .blue:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .red::before {
+    background-image: linear-gradient(-80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .red:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .yellow::before {
+    background-image: linear-gradient(-80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+  .yellow:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+}
+</style>
+
+<body>
+<section class="light">
+	<div class="container py-2">
+		<div class="text-center" id="pageHeaderTitle">Fantasy</div>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://3.bp.blogspot.com/-XlfphvoRjgU/WjaqPJ5XuKI/AAAAAAAAI3M/ji1gE-OSom415vcj4kQ9x7u5y62ed1-iwCLcBGAs/s1600/cover-a-christmas-carol-graphic-novel.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">A CHRISTMAS CAROL</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Charles Dickens</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">A Christmas Carol captured the zeitgeist of the mid-Victorian revival of the Christmas holiday. Dickens had acknowledged the influence of the modern Western observance of Christmas and later inspired several aspects of Christmas, including family gatherings, seasonal food and drink, dancing, games and a festive generosity of spirit.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1nNeHqLxQF4lLfnp0Qkx1veksgqyvJgND/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/R.7fc1bac7389a65628ac46913de53af09?rik=r0JXamF0GvFriA&riu=http%3a%2f%2fd28hgpri8am2if.cloudfront.net%2fbook_images%2fcvr9781416561583_9781416561583_hr.jpg&ehk=16cQODzAAQJRzXZDDGN0r3%2b9ZB2D2PJkXnkiJhUZmh4%3d&risl=&pid=ImgRaw&r=0" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">A Connecticut Yankee In King Arthur's Court</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Mark Twain</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">In the book, a Yankee engineer from Connecticut named Hank Morgan receives a severe blow to the head and is somehow transported in time and space to England during the reign of King Arthur. After some initial confusion and his capture by one of Arthur's knights, Hank realizes that he is actually in the past, and he uses his knowledge to make people believe that he is a powerful magician. He becomes a rival of Merlin, who appears to be little more than a fraud, and gains the trust of King Arthur. Hank attempts to modernize the past in order to make people's lives better.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1NpGpLzeXqqcHpI9J0uPkxenS_V3-c7rC/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.UhDFb3ZG4pg_uJZLeyTcxQAAAA?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">A VOYAGE TO ARCTURUS</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>DAVID LINDSAY</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">A stunning achievement in speculative fiction, A Voyage to Arcturus has inspired, enchanted, and unsettled readers for decades. It is simultaneously an epic quest across one of the most unusual and brilliantly depicted alien worlds ever conceived, a profoundly moving journey of discovery into the metaphysical heart of the universe, and a shockingly intimate excursion into what makes us human and unique.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1cU_xEMhbRsf090sohQ-lLPkDLtFjKn8a/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://th.bing.com/th/id/R.2531efef73344a06b07b86367bfd9feb?rik=UulM%2bU3gBcjQaw&riu=http%3a%2f%2fwww.penguin.com.au%2fcovers%2fcatalog%2f9780141321073.jpg&ehk=oSc9khj5SDFSY8rEds99%2fF3FfS1gA57%2f8xBHs6WYNPI%3d&risl=&pid=ImgRaw&r=0" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">Alice's Adventures in Wonderland</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Lewis Carroll</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Lewis Carroll’s Alice In Wonderland is about a young girl, Alice, who is sitting along the bank of a river when she notices a rabbit in clothing run by. The rabbit says he is late and jumps down a hole through which Alice follows. This is where her adventure begins with many bizarre happenings and meetings of different people. She comes upon locked doors that she unopens with a key she finds. Strange things such as drinking a potion shrinks her, and eating a piece of cake grows her back. In the middle of novel, Alice learns how wonderland works by drinking just enough potion or eating just enough cake to either shrink or grow in order to manuver through wonderland as she is searching for the garden.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/170kwNl9_J44Q1LWm4SiGXnGjzze6Q_oz/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1269232913l/6593668.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">CELTIC EVIL</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>SIERRA ROSE</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Ian Fitzgerald's life is a lie. At eighteen, he's attending University, has a loving foster family & dreams of becoming an actor. This normal life comes to a halt when he learns the truth of his life. The evil Warlock that killed his parents is looking for revenge. He has chosen Ian for his next target. Now, Ian must fight to save himself & the love of his life from death or all is lost.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1Ei-8QY4_YOW_RN_vDmMnu7r0JP0Z4eXb/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://img1.od-cdn.com/ImageType-400/4051-1/555/7E8/9B/%7B5557E89B-50C4-4E95-B6A8-C7CF1EBA06DF%7DImg400.jpg" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">Crown of the Realm</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>D. Dalton</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">In this first volume of the All Things Impossible series, an ancient evil has returned. An ancient war has resumed. And for the first time in elven history, the Crown of the Realm has been stolen. But young Derora Saxen knows nothing of such things. When she sets out from her village with her best friend Kelin, she knows only that she wants to be a warrior. She does not know the immortal chemmen have escaped the realm of darkness to which they had been banished for millennia. She does not know chemmen armies are already exacting revenge on their hated enemies, the elves, or that chemmen assassins have already killed the elven king and queen...</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/18pZKtnlHDAjZj55IZwYTGF3kuoZfF50S/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://imgv2-2-f.scribdassets.com/img/word_document/234818503/original/e512455cf0/1571066906?v=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">DRACULA</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Bram Stoker</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">The original novel. Follow the journey of this most terrible, yet seductive of blood seekers as he makes his way from Transylvania to the dark streets of London.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/11MUU_vQ1PuLJDql71WwsYlswsoBvUXJj/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://www.obooko.com/images-cache/finding-medusa-mann-fc3cb46aebd99f7817d5011ea94ddc6c.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">FINDING MEDUSA</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Randy Mann</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">A story of a young man living in today's world, who discovers he is a descendant of the Greek gods. To save himself from a terminal ancient prophecy, he must find the legendary Medusa for a cure. He soon discovers that the mythological epic tales were changed and finds love, discovery and conspiracy on his journey.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1o1mCOMKsCA6ag4LoFt43FfoC9sdb7CSz/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://th.bing.com/th/id/OIP._zJ0rnrm7dsLWPAHimpuPwHaKX?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">FIVE CHILDREN AND IT</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>E. NESBIT</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">The five children find a cantankerous sand fairy, a psammead, in a gravel pit. Every day 'It' will grant each of them a wish that lasts until sunset, often with disastrous consequences.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1TuGaJlvEN7DrUa3aMb5jabLcRN-AwhA5/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/R.146e200153df23cb61bcdd6b00304c9c?rik=o8qHuvIyiqP01A&riu=http%3a%2f%2f4.bp.blogspot.com%2f-g5mLUOSZ5GA%2fUXW574hXhXI%2fAAAAAAAAfH0%2fkgz35jXVHx8%2fs1600%2fig.jpg&ehk=XGl8IZW9NY6SztfFeOiPKoSAIAQbY4XWyPXmqxPfOfE%3d&risl=&pid=ImgRaw&r=0" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">Ignite</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Kaitlyn Davis</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">When Kira Dawson moves to South Carolina, she meets Luke, a blond goofball who quickly becomes her best friend, and Tristan, a mysterious bad boy who sends shivers down her spine. Kira knows they're keeping secrets, but when she discovers Tristan's lust for blood and her own dormant mystical powers, Kira is forced to fight for her life and make the heartbreaking decision between the familiar comfort of friendship and the fiery passion of love.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1Lds6Zs11Fur0yDZ_uFzNjQqciXB7K570/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://www.obooko.com/images/covers/into-her-own-winters.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">Into Her Own</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Amanda Winters</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Into Her Own is a light-hearted fantasy about a regular 21-year-old woman from Earth who learns that she is going to be the Queen on a distant planet called Raz. Hathor is sent to bring her to her new home, but first she must survive attacks from the Palers who seek to kill her before she can assume the crown. She must also choose who will be her king: William or Hathor.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1hP2RoWYO3KJGO6F-2KMI-lyHeMbv8ju7/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781626865020/le-morte-darthur-9781626865020_hr.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">Le Morte D Arthur</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Sir Thomas Malory</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Le Morte d'Arthur tells the story of King Arthur and his Knights at the Round Table. Arthur, who is son of King Uther Pendragon but was raised by another family, takes his rightful place as king when, as a boy, he is able to pull the sword called Excalibur from the stone. Although he rules wisely and is counseled by Merlin the magician, Arthur makes enemies of other kings and is often at war.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1hP2RoWYO3KJGO6F-2KMI-lyHeMbv8ju7/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://i.thenile.io/r1000/9781523693337.jpg?r=5ecdbc4dd6bc9" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">Peter And Wendy</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>J. M. Barrie</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Peter and Wendy is J. M. Barrie’s most famous work. It’s also known as Peter Pan. It started out as a play in 1904 and in 1911 was published as a novel. It tells the story of Wendy Darling, her brothers and their adventures with Peter Pan and his gang of Lost Boys in Neverland. Peter meets Wendy as he listens to bedtime stories outside of her London home and invites her to come to Neverland to be a mother to his Lost Boys. She and her brothers go and have many adventures. They also meet Peter’s sidekick, Tinkerbell the fairy, and his enemy Captain Hook. Peter Pan has been adapted to the stage and screen many times and is a children’s classic.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1Yuh3HOvYFHcJKhsriMuEornt2MNIs6b6/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://imgv2-1-f.scribdassets.com/img/word_document/327170227/original/b27ca24a83/1577199942?v=1" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">The Adventures of Pinocchio</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Carlo Collodi</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Carved from a piece of wood by the old carpenter Geppetto, the puppet Pinocchio comes to life and immediately starts to misbehave. But while this beloved character has achieved literary immortality, the novel has been widely misunderstood. Pinocchio has a penchant for lying, to be sure, but it’s when he avoids going to school that he repeatedly gets into trouble. The Adventures of Pinocchio is thus not a cautionary tale about lying but an unusually timely fable for our increasingly authoritarian times–a story about the importance of education and of preventing others from pulling our strings.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1BB7bc2hZ77-wkLEcCxvTUifZ08q74xus/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.herlYN0M9eOYGCOS_0xRsgHaJ2?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">The Gospel of the Knife</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Will Shetterly</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">It’s 1969, Christopher Nix is 14 years old. His life is a turbulent echo of the times as he discovers sex, drugs, and rock ‘n roll in the heart of Florida. But into this struggle between the young long-haired hippie and the rednecks who’d just as soon kill him comes a strange offer that will completely change his life.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1CfmiAgKOZrX2MFOuaES2060bvvtGP0GB/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.ZqQR0G-nMoqsvMt6WRJZBgAAAA?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">The Subtle Beauty</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Ann Hunter</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">When vain Princess Glory discovers she is to be wed to a cursed, recluse prince on the night she plans to elope with the royal falconer, her world comes crashing down. In an attempt to escape a loveless marriage, she tries to run away, only to find herself in the castle of the recluse prince. A snarky, gaelic-speaking gryphon, a ghost, and a plot to usurp her father's throne keep her on her toes. Can Glory overcome her vanity and save the cursed prince?</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1aNwYibh3tbj7IFn5qvi6MtvIUw2Z3_3k/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://th.bing.com/th/id/R.4d3d49719ffd88f25cf3a2e7e47eba16?rik=8PmOJ2uxcYLWYQ&riu=http%3a%2f%2fwww.simbasible.com%2fwp-content%2fuploads%2f2015%2f10%2fThrough-the-Looking-Glass1.jpg&ehk=bx8Bo4xdUPQyhC1hbv%2flGaT9ybObltud25e9w3TijqQ%3d&risl=&pid=ImgRaw&r=0" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">THROUGH THE LOOKING GLASS</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>LEWIS CARROLL</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">What begins as a tale that Alice tells her kitten, turns into a dream where strange things happen, like a sliced cake fusing back together, a forest that takes away all your memories, and chess. There is no clearly defined plot line, just several instances of deeper meaning and symbolism.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1h1hCIeC6G3Qv8rIw9ReMtaooMAnSB-Cv/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+	</div>
+</section>
+</body>
+</html>

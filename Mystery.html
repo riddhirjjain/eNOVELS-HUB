@@ -1,0 +1,439 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+/* This pen */
+body {
+  font-family: "Baloo 2", cursive;
+  font-size: 20px;
+  color: #000;
+  font-weight: initial;
+}
+.light {
+  background: #f3f5f7;
+}
+a:hover {
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+#pageHeaderTitle {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+}
+
+/* Cards */
+.postcard {
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  border-radius: 10px;
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+  position: relative;
+  color: #000;
+}
+.postcard.light {
+  background-color: #e1e5ea;
+}
+.postcard a {
+  color: inherit;
+}
+.postcard .small {
+  font-size: 80%;
+  margin-top: -2rem;
+}
+.postcard .postcard__title {
+  font-size: 1.75rem;
+}
+.postcard .postcard__img {
+  max-height: 180px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.postcard .postcard__bar {
+  width: 20px;
+  height: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: width 0.2s ease;
+}
+.postcard .postcard__text {
+  padding: -2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.postcard .postcard__preview-txt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+  height: 100%;
+  font-size: 18px;
+
+}
+.postcard .postcard__tagbox {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+  padding: 0;
+  justify-content: center;
+}
+.postcard .postcard__tagbox .tag__item {
+  display: inline-block;
+  background: rgba(83, 83, 83, 0.4);
+  border-radius: 3px;
+  padding: 2.5px 10px;
+  margin: 0 5px 5px 0;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.postcard .postcard__tagbox .tag__item:hover {
+  background: rgba(83, 83, 83, 0.8);
+}
+.postcard:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(-70deg, #424242, transparent 50%);
+  opacity: 1;
+  border-radius: 10px;
+}
+.postcard:hover .postcard__bar {
+  width: 100px;
+}
+
+@media screen and (min-width: 769px) {
+  .postcard {
+    flex-wrap: inherit;
+  }
+  .postcard .postcard__title {
+    font-size: 2rem;
+  }
+  .postcard .postcard__tagbox {
+    justify-content: start;
+  }
+  .postcard .postcard__img {
+    max-width: 230px;
+    max-height: 100%;
+    transition: transform 0.3s ease;
+  }
+  .postcard .postcard__text {
+    padding: 3rem;
+    width: 100%;
+  }
+  .postcard .media.postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    background: #18151f;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard:hover .postcard__img {
+    transform: scale(1.1);
+  }
+  .postcard:nth-child(2n+1) {
+    flex-direction: row;
+  }
+  .postcard:nth-child(2n+0) {
+    flex-direction: row-reverse;
+  }
+  .postcard:nth-child(2n+1) .postcard__text::before {
+    left: -12px !important;
+    transform: rotate(4deg);
+  }
+  .postcard:nth-child(2n+0) .postcard__text::before {
+    right: -12px !important;
+    transform: rotate(-4deg);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .postcard__text {
+    padding: 2rem 3.5rem;
+  }
+
+  .postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard.light .postcard__text:before {
+    background: #e1e5ea;
+  }
+}
+/* COLORS */
+.postcard .postcard__tagbox .green.play:hover {
+  background: #79dd09;
+  color: black;
+}
+.green .postcard__title:hover {
+  color: #79dd09;
+}
+.green .postcard__bar {
+  background-color: #79dd09;
+}
+.green::before {
+  background-image: linear-gradient(-30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+.green:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .blue.play:hover {
+  background: #0076bd;
+}
+.blue .postcard__title:hover {
+  color: #0076bd;
+}
+.blue .postcard__bar {
+  background-color: #0076bd;
+}
+.blue::before {
+  background-image: linear-gradient(-30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+.blue:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .red.play:hover {
+  background: #bd150b;
+}
+.red .postcard__title:hover {
+  color: #bd150b;
+}
+.red .postcard__bar {
+  background-color: #bd150b;
+}
+.red::before {
+  background-image: linear-gradient(-30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+.red:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .yellow.play:hover {
+  background: #bdbb49;
+  color: black;
+}
+.yellow .postcard__title:hover {
+  color: #bdbb49;
+}
+.yellow .postcard__bar {
+  background-color: #bdbb49;
+}
+.yellow::before {
+  background-image: linear-gradient(-30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+.yellow:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+
+@media screen and (min-width: 769px) {
+  .green::before {
+    background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .green:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .blue::before {
+    background-image: linear-gradient(-80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .blue:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .red::before {
+    background-image: linear-gradient(-80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .red:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .yellow::before {
+    background-image: linear-gradient(-80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+  .yellow:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+}
+</style>
+
+<body>
+<section class="light">
+	<div class="container py-2">
+		<div class="text-center" id="pageHeaderTitle">Mystery</div>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://th.bing.com/th/id/R.a7fe11e929ac3af6cc619b0c297dd752?rik=9cocgqquJE2uEw&riu=http%3a%2f%2fwww.e-booksdirectory.com%2fimglrg%2f1789.jpg&ehk=%2fB5LGmJl%2foAlgz%2fIgWigEwk0MJbOJ4AvYsXrl2BXVOI%3d&risl=&pid=ImgRaw&r=0" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">Bicycle Shop Murder</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Robert Burton Robinson</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">A beautiful, mysterious redhead befriends Greg Tenorly, and seems to have a romantic interest. But is she merely using him to influence the outcome of the trial? By the end of the first week, three people connected with the case are dead, and Greg is beginning to fear for his own life. He is now convinced that a powerful Dallas attorney is directing the murder spree in his little town. But why? He is determined to find out.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1vEA-UVBX73R-VlVGSE3IAHD0AcCIvrFk/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://www.obooko.com/images-cache/death-stalks-her-cover-obooko-ebook-76cf5f89dc354729c8fee9150db80352.jpg" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">DEATH STALKS HER</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Peter C Byrnes</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Across Australia, one woman dies every week at the hands of a spouse, ex-spouse, friend, or a lover/former lover…in other words, someone she knew and trusted was responsible for her death.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1vEA-UVBX73R-VlVGSE3IAHD0AcCIvrFk/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://booktree.ng/wp-content/uploads/2021/02/eleven-days-an-unexpected-love-obooko-87259c737f91b0802bcf5dde5de638bb.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">Eleven Days: An Unexpected Love</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Lora Lindy</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">After the death of her beloved cousin, Lana Andrews has to get away to be alone, to grieve. She rents a quaint little beach house in Plymouth MA. Little does she know she would meet that one special love, an unexpected love. That one true love is Mike Ramsey, and he's a U.S. Marshal and the beach house owner. As their love grows, so do their troubles. Someone is stalking Lana, and Mike has to figure out who it is before the stalker gets her. Not only does he have to protect her, he must find the connection between Lana and the stalker before it's too late.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1vEA-UVBX73R-VlVGSE3IAHD0AcCIvrFk/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://1.bp.blogspot.com/-T2oUyzHDRjk/XbsLOFEd5iI/AAAAAAAAxmA/4MRRy-mtePUqN7JK0sCFvCwTYgMYdmkgwCLcBGAsYHQ/s1600/BookCover_FindingLisa.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">Finding Lisa</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Sigrid Macdonald</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Tara Richards is approaching her 40th birthday. Her marriage is rocky, she is attracted to a much younger man who works at the grocery store, and she is having difficulty with her sullen teenage son. The only one who understands her is her best friend, Lisa, but after a girls' night out, Lisa goes missing. Tara launches a frantic search to find her.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1_4vasSLWunXgdZaEi4rf8GzcIu5jfyV0/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://m.media-amazon.com/images/I/51dHMNaLTJL._SY346_.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">GOD’S CHOSEN: STAND AND FIGHT</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Jeremy Gatlin</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Jeffrey Allan was just an ordinary young man, now he must wage a war against evil. The day he meets Lara Potters, his life gets turned upside down. She tells him that God has chosen him to protect mankind from evil until the Second Coming. There's a cult running rampant in his town, as well as strange animal attacks and he has to stop them.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1_4vasSLWunXgdZaEi4rf8GzcIu5jfyV0/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://booktree.ng/wp-content/uploads/2021/06/murder-zero-hour-paul-westwood-207x300.jpg" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">Murder at Zero Hour</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Paul Westwood</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">From the safety of America, William Grant watches as the Great War rages in Europe. Itching for adventure, he travels to Britain to join the army. After a harrowing journey, Grant is accepted into a newly formed regiment. He is posted to France, where he must learn to survive the horrors of war. A popular captain is killed, and all the evidence points to murder. Who in the regiment did the deed? With the help of his comrades, Grant must survive the Battle of the Somme and the evil intentions of an unknown murderer, all while trying to earn the love of a beautiful nurse.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1P5HaRVu8eK2uv-NA9wXDHD7qhYOSw9j3/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.rmI9VDhZXXCcFZjLod84hgAAAA?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">RIGHT ON TIME</h1>
+				<div class="postcard__subtitle small">b>AUTHOR: </b>FAITH IJIGA</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Tragedy has befallen sixteen-year-old Ayanate Green, a final year high school student and the only daughter of a single mother of two. She unexpectedly loses her sight on the day she is to write her final paper. The awful realization is horrifying to her, her fellow students, teachers and invigilators when she couldn't see the questions on her examination booklet. It is clear that her life will never remain the same. Five years later, a crime syndicate is growing and spreading like wildfire in the country. Will there be an intervention??? And will it be right on time?</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1bwk4EjRHgL4t6loUqJ_-xn9Jx_XplZUV/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://www.obooko.com/images-cache/running-from-mr-blue-0f4c87cfe6e101ae048d3a49519fcdff.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">Running from Mr. Blue</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Hank Johnson</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Bakoda’s close friend and shrink Dr. Watt is overwhelmed by guilt because he feels responsible for the brutal death of a high end escort from New York City at the hands of a “Mr. Blue” with a trademark red handled straight razor. Mr. Blue, an enigma on the New York prostitution scene, poses a tangled web of danger, intrigue, and voodoo as Bakoda Pak travels to The Big Apple to exact revenge to salve his friend’s psychic pain.with the help of a gritty New York detective and another beautiful escort, part of Mr. Blue’s stable of exotic women.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1_VWocFOkUpyfbMSkfZcUIz6PjSnYbSDo/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://www.obooko.com/images-cache/the-last-mission-cc4502d9a76bb25183ca0c816383c694.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">THE LAST MISSION</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Steve Moghadam</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">IN A PLAIN, UNREMARKABLE CONFERENCE room in a nondescript hotel on a main street in Amman, Jordan, sat the Leader of the Supreme Party. She was in a closed meeting with her top military leaders and other important members of the Party. As the protocol demanded, the Leader sat at the head of an oval table, facing the main door of the room. She was dressed in a Supreme Party uniform and sat straight and motionless. With her six generals dressed in uniforms identical to her own sitting at her sides, she looked around with a stern gaze, leaving no doubt about who was in charge.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1tPGlcDiPyE7i6pfPKxO4RI26UJL-u2Os/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.oqEvLHmYm5Hj8vm3Xp41IgAAAA?pid=ImgDet&rs=1" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">THE MURDERER</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>AROWOLO AYOKANMI DANIEL</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Susan Obi who was in a group of six and last year in college was found dead in her apartment - it was on a day she had a camera installed. With all evidence leading to Tade Leo - a member of the reading group, Rebecca Shittu - another member of the group was furious and decided to spit out all she knew about each member of the reading group to Detective Thomas. Her decision caused dissension within the group but Detective Thomas was ready to put Tade Leo behind the bars only that he couldn't be found.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/15_h3N8s7kTAumrbNy77lT7eBDiZ_7IFq/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.q0Z32UmiJ3UXteFTfFYaSgAAAA?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">THE SECOND BAT GUANO WAR</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>J.M. Porup</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">A gritty South American noir... Rats ate his baby daughter while he partied in a disco. Now Horace "Horse" Mann is a drugged-out expat teaching English to criminals in Lima, Peru. Oh, and doing the odd favor for the CIA. When his Agency contact, Pitt Waters, goes missing, Horse's desperate efforts to find his only friend lead him to a Buddhist ashram on the shores of Lake Titicaca. There Horse uncovers his friend's involvement with a group of Gaia-worshipping terrorists who want to kill off the human "disease" infecting the earth. Can Horse find his friend in time? And when he does, will he want to stop him?</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1YrBIbsfOTWF73Lkxwq7T9rTi8X3YI2Lt/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+	</div>
+</section>
+</body>
+</html>

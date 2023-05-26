@@ -1,0 +1,397 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+/* This pen */
+body {
+  font-family: "Baloo 2", cursive;
+  font-size: 20px;
+  color: #000;
+  font-weight: initial;
+}
+.light {
+  background: #f3f5f7;
+}
+a:hover {
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+#pageHeaderTitle {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+}
+
+/* Cards */
+.postcard {
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  border-radius: 10px;
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+  position: relative;
+  color: #000;
+}
+.postcard.light {
+  background-color: #e1e5ea;
+}
+.postcard a {
+  color: inherit;
+}
+.postcard .small {
+  font-size: 80%;
+  margin-top: -2rem;
+}
+.postcard .postcard__title {
+  font-size: 1.75rem;
+}
+.postcard .postcard__img {
+  max-height: 180px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.postcard .postcard__bar {
+  width: 20px;
+  height: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: width 0.2s ease;
+}
+.postcard .postcard__text {
+  padding: -2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.postcard .postcard__preview-txt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+  height: 100%;
+  font-size: 18px;
+
+}
+.postcard .postcard__tagbox {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+  padding: 0;
+  justify-content: center;
+}
+.postcard .postcard__tagbox .tag__item {
+  display: inline-block;
+  background: rgba(83, 83, 83, 0.4);
+  border-radius: 3px;
+  padding: 2.5px 10px;
+  margin: 0 5px 5px 0;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.postcard .postcard__tagbox .tag__item:hover {
+  background: rgba(83, 83, 83, 0.8);
+}
+.postcard:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(-70deg, #424242, transparent 50%);
+  opacity: 1;
+  border-radius: 10px;
+}
+.postcard:hover .postcard__bar {
+  width: 100px;
+}
+
+@media screen and (min-width: 769px) {
+  .postcard {
+    flex-wrap: inherit;
+  }
+  .postcard .postcard__title {
+    font-size: 2rem;
+  }
+  .postcard .postcard__tagbox {
+    justify-content: start;
+  }
+  .postcard .postcard__img {
+    max-width: 230px;
+    max-height: 100%;
+    transition: transform 0.3s ease;
+  }
+  .postcard .postcard__text {
+    padding: 3rem;
+    width: 100%;
+  }
+  .postcard .media.postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    background: #18151f;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard:hover .postcard__img {
+    transform: scale(1.1);
+  }
+  .postcard:nth-child(2n+1) {
+    flex-direction: row;
+  }
+  .postcard:nth-child(2n+0) {
+    flex-direction: row-reverse;
+  }
+  .postcard:nth-child(2n+1) .postcard__text::before {
+    left: -12px !important;
+    transform: rotate(4deg);
+  }
+  .postcard:nth-child(2n+0) .postcard__text::before {
+    right: -12px !important;
+    transform: rotate(-4deg);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .postcard__text {
+    padding: 2rem 3.5rem;
+  }
+
+  .postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+  .postcard.light .postcard__text:before {
+    background: #e1e5ea;
+  }
+}
+/* COLORS */
+.postcard .postcard__tagbox .green.play:hover {
+  background: #79dd09;
+  color: black;
+}
+.green .postcard__title:hover {
+  color: #79dd09;
+}
+.green .postcard__bar {
+  background-color: #79dd09;
+}
+.green::before {
+  background-image: linear-gradient(-30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+.green:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .blue.play:hover {
+  background: #0076bd;
+}
+.blue .postcard__title:hover {
+  color: #0076bd;
+}
+.blue .postcard__bar {
+  background-color: #0076bd;
+}
+.blue::before {
+  background-image: linear-gradient(-30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+.blue:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .red.play:hover {
+  background: #bd150b;
+}
+.red .postcard__title:hover {
+  color: #bd150b;
+}
+.red .postcard__bar {
+  background-color: #bd150b;
+}
+.red::before {
+  background-image: linear-gradient(-30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+.red:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .yellow.play:hover {
+  background: #bdbb49;
+  color: black;
+}
+.yellow .postcard__title:hover {
+  color: #bdbb49;
+}
+.yellow .postcard__bar {
+  background-color: #bdbb49;
+}
+.yellow::before {
+  background-image: linear-gradient(-30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+.yellow:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+
+@media screen and (min-width: 769px) {
+  .green::before {
+    background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .green:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+  .blue::before {
+    background-image: linear-gradient(-80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .blue:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+  .red::before {
+    background-image: linear-gradient(-80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .red:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+  .yellow::before {
+    background-image: linear-gradient(-80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+  .yellow:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+}
+</style>
+
+<body>
+<section class="light">
+	<div class="container py-2">
+		<div class="text-center" id="pageHeaderTitle">Thriller</div>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1398403017l/22010509.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">4 Weeks to Live</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Don McGraw</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">With this work, McCormick takes his place among the other important chroniclers of this period. He reminds us that these stories are still out there, needing to be told, needing to be listened to and remembered. Each and every one of these stories adds up to a greater understanding of the time we have all passed through. It is our common history and will remain so forever. This beautiful little book should be required reading in every high school, along with the other books of the Vietnam war. Because of its brevity, stature, and dignity, I am confident Across the Pond will last.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1fH_ACyJi82OxNeho0q-ua0nJIKm67GCH/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://images.gr-assets.com/books/1329413409l/13487781.jpg" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">The  Hammer  of  God</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>REGINALD COOK</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">For centuries, deep inside the bowels of the church, hidden from all except a few, a hauntingly evil cancer has spread like a murderous plague, destroying everything and everyone in its path. No one is exempt from its lure, and it will go to the depths of hell to accomplish one single goal at all costs. Global domination through a new world order. This cancer has a name: The Order of Asmodeus.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1GX97t10Igt4VOSekTDewHNOddyQPPBhd/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.myqpe87SmcJupRTDe2ahBAAAAA?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">Illusion of Luck</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Robert Burton Robinson</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">As Greg Tenorly was about to marry the woman of his dreams, he figured he was the luckiest man in the world. Until he got an anonymous phone call warning him about his bride's shady past. Larry had been lucky all his life. He had everything he could possibly want. Except a publishing contract. So, the fact that his first six mystery novels had been rejected did not dissuade him from starting on book seven. Ironically, he finally found success when he began to publish an online account of his own downward spiral into depravity and murder.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1iUCneoIc0x5JHde1UaWdTloHpxjZ1qv0/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://www.obooko.com/images/covers/lady-in-red-pearce-new-2.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">Lady in Red</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Bradley Pearce</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Secretary of State, Augustus Braun has plan to eradicate much of the world’s population. Seth is working for the Order to develop a vaccine against a virus to protect the Order’s Chosen. Secretly he is developing his own deadly virus. Kristina, a New York Detective by day, by night she moonlights as an exotic dancer. Worlds collide as she investigates connected deaths. One that involves Braun’s son, Nero. Seth’s life becomes entangled with Kristina’s. Both reluctant to admit they are falling in love. Should he tell her of his deadly plan?</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1atqLkBManXohGvcYJYgpK0Cw5nsQ31RS/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light blue">
+			<img class="postcard__img" src="https://th.bing.com/th/id/OIP.wabAI3sHHQlhUAYJIseuWAHaLH?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title blue">ROOT OF UNITY</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>SL Huang</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Cas Russell has always used her superpowered mathematical skills to dodge snipers or take down enemies. Oh, yeah, and make as much money as possible on whatever unsavory gigs people will hire her for. But then one of her few friends asks a favor: help him track down a stolen math proof. One that, in the wrong hands, could crumble encryption protocols worldwide and utterly collapse global commerce.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play blue">
+						<a href="https://drive.google.com/file/d/1q7YEfp9w1YYzmyKT2kJOWHU8q0G0TTgy/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.hspfiHtnWUZByFI1tXYPZAAAAA?pid=ImgDet&rs=1" alt="Image Title" />	
+			<div class="postcard__text">
+				<h1 class="postcard__title red">THE CARGO CLUB</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>John Francis Kinsella</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">As Pat Kennedy and his friends flew high above the Atlantic, en route for Colombia where they planned to salvage the cargo from a sunken galleon, his thoughts wandered, images of the Portuguese explorer, Ferdinand Magellan, setting out from Cadiz on his perilous voyage of discovery, drifted in and out of mind.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play red">
+						<a href="https://drive.google.com/file/d/1xUPI3ZLBD26AhBcjpoW33MIOEAIwurnZ/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+				<img class="postcard__img" src="https://th.bing.com/th/id/OIP.insFe5acNbuml2PG5kZ-KQAAAA?pid=ImgDet&rs=1" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title green">The Testimony</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Richard Shekari</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">A family of five invites their good neighbour over for dinner. Things get ugly as someone decides to teach them a lesson they will never forget.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play green">
+						<a href="https://drive.google.com/file/d/1vutlGJ9M1_t2E7Q4olAUlDMLFYZMKfjd/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+				<img class="postcard__img" src="https://www.obooko.com/images/covers/the-thieves-of-shiny-things.jpg" alt="Image Title" />
+			<div class="postcard__text">
+				<h1 class="postcard__title yellow">THE THIEVES OF SHINY THINGS</h1>
+				<div class="postcard__subtitle small"><b>AUTHOR: </b>Charlie Dickinson</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">In prehistoric California, among rolling foothills of the Sierras, young Jupa discovers his father dead by an old oak tree. An elder, Keleli, concludes it was murder. How will the murderer be caught? How does loss change Jupa, coming into his own as a man? The Thieves of Shiny Things weaves murder, coming-of-age, and social bonds into a Stone Age mystery that evokes the Native America that once was.</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item play yellow">
+						<a href="https://drive.google.com/file/d/1INYVabCxPbcqWfHANEMcQx8RF5PQmlqo/view?usp=share_link">Read</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+	</div>
+</section>
+</body>
+</html>
